@@ -1,0 +1,122 @@
+* {
+  padding: 0;
+  margin: 0; }
+
+a {
+  color: inherit;
+  text-decoration: none; }
+  a:hover {
+    color: #0088b9; }
+
+ul, li {
+  list-style-type: none; }
+
+body {
+  background-color: black;
+  font: normal normal 1em/1.5em Arial, sans-serif; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 1em; }
+
+h1 {
+  color: #232323;
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 0.5em !important;
+  position: relative; }
+  h1 + .wrapper {
+    margin-top: 0 !important; }
+  h1 .link {
+    position: absolute;
+    right: 0; }
+
+.wrapper {
+  position: relative;
+  width: 30rem;
+  margin: 2rem auto; }
+  .wrapper.text {
+    background-color: white;
+    color: black;
+    padding: 4em 0 6em; }
+    .wrapper.text p, .wrapper.text h2, .wrapper.text h3, .wrapper.text h4, .wrapper.text ul {
+      padding: 0 5em; }
+    .wrapper.text ul ul, .wrapper.text ul h3, .wrapper.text ul h4 {
+      padding: 0; }
+    .wrapper.text p {
+      margin-bottom: 1em; }
+    .wrapper.text h3 {
+      margin-top: 1em; }
+    .wrapper.text li {
+      margin-bottom: 0.5em; }
+  .wrapper.map {
+    margin-bottom: 0; }
+    .wrapper.map + h1 {
+      margin-top: 0.5em !important; }
+
+.pixel {
+  display: block;
+  float: left;
+  background-color: black; }
+  .pixel:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%; }
+
+.clearfix:after, .clearfix:before {
+  content: " ";
+  display: table; }
+
+.clearfix:after {
+  clear: both; }
+
+@media screen and (min-width: 20rem) {
+  .wrapper {
+    width: 16rem;
+    margin: 3rem auto; }
+
+  body {
+    font-size: 0.7em; } }
+@media screen and (min-width: 30rem) {
+  .wrapper {
+    width: 26rem;
+    margin: 3rem auto; }
+
+  body {
+    font-size: 0.8em; } }
+@media screen and (min-width: 40rem) {
+  .wrapper {
+    width: 36rem;
+    margin: 4rem auto; }
+
+  body {
+    font-size: 0.9em; } }
+@media screen and (min-width: 48rem) {
+  .wrapper {
+    width: 44rem;
+    margin: 4rem auto; }
+
+  body {
+    font-size: 1em; } }
+@media screen and (min-width: 60rem) {
+  .wrapper {
+    width: 56rem;
+    margin: 5rem auto; }
+
+  body {
+    font-size: 1.2em; } }
+@media screen and (min-width: 80rem) {
+  .wrapper {
+    width: 76rem;
+    margin: 5rem auto; }
+
+  body {
+    font-size: 1.4em; } }
+@media screen and (min-width: 96rem) {
+  .wrapper {
+    width: 92rem;
+    margin: 6rem auto; }
+
+  body {
+    font-size: 1.6em; } }
+
+/*# sourceMappingURL=main.css.map */

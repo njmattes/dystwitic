@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{%- block headcss %}
+  <style>
+    .pixel { width: {{ pixel/360*100 }}%; }
+  </style>
+{%- endblock -%}
+
+{%- block content %}
+<div class="wrapper clearfix map">
+  {%- for i in range(pixels) %}
+    <div class=pixel></div>
+  {%- endfor -%}
+</div>
+{#  <h1 class=wrapper>Dystwitic Earth#}
+{#      <span class=link><a href={{ url_for('dystwitic.about') }} >?</a></span>#}
+{#  </h1>#}
+  <h1 class=wrapper>
+    The near real-time geo-located sentiment around @realDonaldTrump, from
+    <span style="color:rgb(179, 88, 6)">positive</span> to
+    <span style="color:rgb(84, 39, 136)">negative</span>.
+  </h1>
+{%- endblock -%}
+
+{%- block bodyjs %}
+{% assets 'js_d3' %}<script src="{{ ASSET_URL }}"></script>{% endassets %}
+<script>
+  var Options = {};
+  Options.pixel = {{ pixel }};
+</script>
+{% assets 'js_app' %}<script src="{{ ASSET_URL }}?1"></script>{% endassets %}
+{%- endblock -%}
