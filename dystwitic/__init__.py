@@ -24,7 +24,7 @@ js = Bundle('js/vendors/d3/d3-selection.v1.min.js',
             filters='jsmin', output='gen/dystwitic.d3.v0.js')
 assets.register('js_d3', js)
 
-js = Bundle('js/vendors/socket.io.min.js',
+js = Bundle('js/vendors/socket.io.1.3.6.min.js',
             'js/app/dystwitic_socket.v0.js',
             filters='jsmin', output='gen/dystwitic.v0.js')
 assets.register('js_app', js)
