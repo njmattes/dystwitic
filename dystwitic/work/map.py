@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import os
 from collections import namedtuple, Counter
 from datetime import datetime
-from scipy import misc
+import numpy as np
 from scipy.interpolate import interp1d, Rbf
-from dystwitic.constants import BASE_DIR, PIXEL, OBSFUCATE_COLOR, COLORS
+from dystwitic.constants import OBSFUCATE_COLOR, COLORS,RASTER
 
 
 def make_map():
@@ -13,10 +12,8 @@ def make_map():
     This JSON is cached in `redis` with a task monitored by the `celery beat`
     scheduler.
     """
-    raster = misc.imread(os.path.join(
-        BASE_DIR, 'static', 'masks', 'wcs_{}deg.tif'.format(PIXEL)))
-    raster_x = raster.shape[1]
-    raster_y = raster.shape[0]
+    raster_x = RASTER.shape[1]
+    raster_y = RASTER.shape[0]
 
     data_display_idxs = 50
 
@@ -81,8 +78,8 @@ def make_map():
     xg = np.linspace(-180, 180, raster_x)
     yg = np.linspace(90, -90, raster_y)
     X, Y = np.meshgrid(xg, yg)
-    X = np.ma.masked_array(X, np.logical_not(raster))
-    Y = np.ma.masked_array(Y, np.logical_not(raster))
+    X = np.ma.masked_array(X, np.logical_not(RASTER))
+    Y = np.ma.masked_array(Y, np.logical_not(RASTER))
 
     fine = coordinates(X, Y)
     interp = coordinates(lons, lats)
@@ -96,7 +93,7 @@ def make_map():
         rbf = Rbf(interp.x, interp.y, interp.z, bs, function=method)
         valsg = rbf(fine.x, fine.y, fine.z)
 
-        arr = np.stack((huesg, satsg, valsg), axis=2) * raster.reshape(
+        arr = np.stack((huesg, satsg, valsg), axis=2) * RASTER.reshape(
             (raster_y, raster_x, 1))
 
         return [[None if np.isnan(p) else round(p, 2) for p in t]

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
+from scipy import misc
 
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -49,3 +50,6 @@ TAGS = [
 ]
 
 PIXEL = 5
+
+RASTER = misc.imread(os.path.join(
+        BASE_DIR, 'static', 'masks', 'wcs_{}deg.tif'.format(PIXEL)))
