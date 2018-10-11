@@ -32,6 +32,9 @@ class DystwiticStream(TwitterStream):
 
 
 if __name__ == '__main__':
-    tags = TAGS + COLOR_TERMS.keys() if OBSFUCATE_COLOR else TAGS + COLORS
+    # FIXME: Removing the conditional is a hack that needs to be fixed \
+    # properly.
+    # tags = TAGS + COLOR_TERMS.keys() if OBSFUCATE_COLOR else TAGS + COLORS
+    tags = TAGS + COLOR_TERMS.keys()
     stream = DystwiticStream(tags)
     stream.stream()

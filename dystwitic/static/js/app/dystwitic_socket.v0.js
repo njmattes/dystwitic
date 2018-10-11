@@ -4,7 +4,7 @@ var wrap = d3.select('.wrapper.map')
   , map_data
 ;
 
-var socket = io('http://localhost:5000');
+var socket = io();
 var t = new Date().getSeconds() + 60;
 
 var update_fills = function update_fills() {
