@@ -71,3 +71,23 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+.idea/deployment.xml
+.idea/dystwitic.iml
+.idea/encodings.xml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/webServers.xml
+dystwitic/.idea/
+# Start unversioned files
+dystwitic/config.py
+dystwitic/static/css/main.css.map
+dystwitic/static/js/vendors/d3/
+dystwitic/static/masks/wcs_5deg.2.tif
+dystwitic/templates/about.html
+dystwitic/templates/bio.html
+dystwitic/templates/matteson.html
+dystwitic/templates/snyder-quinn.html
+supervisor.ini
+# End unversioned files
