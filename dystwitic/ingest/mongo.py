@@ -8,13 +8,10 @@ JSON records of color and sentiment.
 """
 
 
-client = MongoClient(MongoConfig.HOST, MongoConfig.PORT)
-db = client[MongoConfig.DATABASE]
-color_collection = db[MongoConfig.COLOR_COLLECTION]
-tag_collection = db[MongoConfig.TAG_COLLECTION]
-
-
 def write_color_row(coords, rgb, hsl, ss):
+    client = MongoClient(MongoConfig.HOST, MongoConfig.PORT)
+    db = client[MongoConfig.DATABASE]
+    color_collection = db[MongoConfig.COLOR_COLLECTION]
     color_collection.insert_one({
         'lon': coords[0],
         'lat': coords[1],
@@ -33,6 +30,9 @@ def write_color_row(coords, rgb, hsl, ss):
 
 
 def write_tag_row(coords, ss):
+    client = MongoClient(MongoConfig.HOST, MongoConfig.PORT)
+    db = client[MongoConfig.DATABASE]
+    tag_collection = db[MongoConfig.TAG_COLLECTION]
     tag_collection.insert_one({
         'lon': coords[0],
         'lat': coords[1],

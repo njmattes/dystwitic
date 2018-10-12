@@ -7,9 +7,10 @@ import colorsys
 import simplejson as json
 import numpy as np
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from pymongo import MongoClient
+from dystwitic.config import MongoConfig
 from dystwitic.constants import TAGS, OBSFUCATE_COLOR, COLORS
-from dystwitic.ingest.mongo import color_collection, tag_collection, \
-    write_tag_row, write_color_row
+from dystwitic.ingest.mongo import write_tag_row, write_color_row
 from dystwitic.work.celery import app
 from dystwitic.work.map import make_map
 from dystwitic.web.cache import cache
@@ -17,7 +18,7 @@ from dystwitic.web.cache import cache
 """`celery` tasks.
 
 These functions are monitored by `celery`. Repetitive tasks are scheduled and
-run by `celerey`'s `beat` process. `celery beat` itself is launched and
+run by `celery`'s `beat` process. `celery beat` itself is launched and
 monitored by `supervisord`. Other tasks are added to a queue as needed.
 
 Options for these tasks can be set in the `CeleryConfig` object in the
@@ -93,6 +94,10 @@ def process_tweet(task, string):
 @app.task(bind=True, max_retries=3, soft_time_limit=10,
           name='remove_old_tweets')
 def remove_old_tweets(task):
+    client = MongoClient(MongoConfig.HOST, MongoConfig.PORT)
+    db = client[MongoConfig.DATABASE]
+    color_collection = db[MongoConfig.COLOR_COLLECTION]
+    tag_collection = db[MongoConfig.TAG_COLLECTION]
     for collection in [tag_collection, color_collection]:
         n = collection.count({})
         if n > 1000:
